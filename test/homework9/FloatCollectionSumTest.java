@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class FloatCollectionSumTest {
 
     @Test
-    public void sumShouldReturnZeroInEmptyCollection(){
+    public void sumShouldReturnZeroInEmptyCollection() {
         FloatCollectionSum example = new FloatCollectionSum();
         ArrayList<Float> arrayList = new ArrayList<>();
         float expected = 0f;
@@ -30,5 +30,19 @@ public class FloatCollectionSumTest {
         float expected = 75f;
         float result = example.sum(arrayList);
         Assert.assertEquals(result, expected, 0);
+    }
+
+    @Test
+    public void sumWithPossibleOverflow() {
+        FloatCollectionSum example = new FloatCollectionSum();
+        ArrayList<Float> arrayList = new ArrayList<>();
+
+        arrayList.add(16777216f);
+
+        for (int i = 0; i < 16778000; i++) {
+            arrayList.add(1f);
+        }
+
+        System.out.println(example.sum(arrayList));
     }
 }
