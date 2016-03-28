@@ -14,8 +14,8 @@ public class FloatCollectionSumTest {
     public void sumShouldReturnZeroInEmptyCollection() {
         FloatCollectionSum example = new FloatCollectionSum();
         ArrayList<Float> arrayList = new ArrayList<>();
-        float expected = 0f;
-        float result = example.sum(arrayList);
+        double expected = 0f;
+        double result = example.sum(arrayList);
 
         Assert.assertEquals(result, expected, 0);
     }
@@ -27,22 +27,52 @@ public class FloatCollectionSumTest {
         arrayList.add(10f);
         arrayList.add(25f);
         arrayList.add(40f);
-        float expected = 75f;
-        float result = example.sum(arrayList);
+        double expected = 75f;
+        double result = example.sum(arrayList);
         Assert.assertEquals(result, expected, 0);
     }
 
     @Test
-    public void sumWithPossibleOverflow() {
+    public void sumShouldWorkWithMagicNumberWhileIncreasing() {
         FloatCollectionSum example = new FloatCollectionSum();
         ArrayList<Float> arrayList = new ArrayList<>();
 
-        arrayList.add(16777216f);
+        arrayList.add(16_777_216f);
+        arrayList.add(1f);
+        arrayList.add(1f);
 
-        for (int i = 0; i < 16778000; i++) {
+        float result = example.sum(arrayList);
+        float expected = 16_777_218f;
+        Assert.assertEquals(result, expected, 0);
+    }
+
+    @Test
+    public void sumShouldWorkWithMagicNumberWhileDecreasing() {
+        FloatCollectionSum example = new FloatCollectionSum();
+        ArrayList<Float> arrayList = new ArrayList<>();
+
+        arrayList.add(16_777_218f);
+        arrayList.add(-1f);
+        arrayList.add(-1f);
+
+        float result = example.sum(arrayList);
+        float expected = 16_777_216f;
+        Assert.assertEquals(result, expected, 0);
+    }
+
+    @Test
+    public void maxTestShouldWork() {
+        FloatCollectionSum example = new FloatCollectionSum();
+        ArrayList<Float> arrayList = new ArrayList<>();
+
+        arrayList.add(16_777_216f);
+        for (int i = 0; i < 17_000_000; i++) {
             arrayList.add(1f);
         }
 
-        System.out.println(example.sum(arrayList));
+        float result = example.sum(arrayList);
+        float expected = 16_777_216f + 17_000_000f;
+        System.out.println(result);
+        Assert.assertEquals(result, expected, 0);
     }
 }

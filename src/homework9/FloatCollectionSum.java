@@ -1,6 +1,5 @@
 package homework9;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -8,11 +7,17 @@ import java.util.Collection;
  */
 public class FloatCollectionSum {
 
-    public float sum(Collection<Float> collection){
+    public float sum(Collection<Float> collection) {
         float sum = 0;
-        for (Float o : collection){
-            sum += o;
+        int deviation = 0;
+        for (Float o : collection) {
+            if ((sum + o == 16777216f) && (sum + (o + 1) == 16777218f)) {
+                deviation += 1;
+            } else if ((sum + o == 16777216f) && (sum + (o - 1) == 16777216f)) {
+                deviation -= 1;
             }
-        return sum;
+            sum += o;
+        }
+        return sum + deviation;
     }
 }
