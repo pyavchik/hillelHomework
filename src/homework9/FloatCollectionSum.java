@@ -11,9 +11,9 @@ public class FloatCollectionSum {
         float sum = 0;
         int deviation = 0;
         for (Float o : collection) {
-            if ((sum + o == 16777216f) && (sum + (o + 1) == 16777218f)) {
+            if ((sum + o == 16_777_216f) && (sum + (o + 1) == 16_777_218f)) {
                 deviation += 1;
-            } else if ((sum + o == 16777216f) && (sum + (o - 1) == 16777216f)) {
+            } else if ((sum + o == 16_777_216f) && (sum + (o - 1) == 16_777_216f)) {
                 deviation -= 1;
             }
             sum += o;
