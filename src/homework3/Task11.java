@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 public class Task11 {
     public static void main(String[] args) {
-
+//be careful
         Scanner scanner = new Scanner(System.in);
         System.out.print("Input your words here: ");
         String word = scanner.nextLine();
